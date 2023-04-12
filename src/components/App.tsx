@@ -1,6 +1,6 @@
 import React from 'react';
-import Header from './components/Header';
-import TodosLogic from './components/TodosLogic';
+import Header from './appComponents/Header';
+import TodosLogic from './appComponents/TodosLogic';
 
 function App() {
   return (
