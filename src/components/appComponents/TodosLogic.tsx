@@ -1,8 +1,9 @@
+import { useState } from "react"
 import InputTodo from "./todosLogicComponents/InputTodo"
 import TodosList from "./todosLogicComponents/TodosList"
 
 const TodosLogic = () => {
-  const todos: Todo[] = [
+  const initialTodos: Todo[] = [
     {
       id: 1,
       title: 'Setup development environment',
@@ -19,10 +20,12 @@ const TodosLogic = () => {
       completed: false,
     },
   ]
+
+  const [todos, setTodos] = useState(initialTodos)
   return (
     <div>
       <InputTodo />
-      <TodosList todos={todos}/>
+      <TodosList todos={todos} setTodos={setTodos}/>
     </div>
   )
 }
