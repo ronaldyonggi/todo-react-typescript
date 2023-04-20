@@ -24,7 +24,7 @@ const TodosLogic = () => {
   const [todos, setTodos] = useState(initialTodos)
   return (
     <div>
-      <InputTodo />
+      <InputTodo setTodos={setTodos} />
       <TodosList todos={todos} setTodos={setTodos}/>
     </div>
   )
