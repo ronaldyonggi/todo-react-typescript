@@ -9,6 +9,7 @@ interface InputTodoProps {
 const InputTodo = (props: InputTodoProps) => {
   const setTodos = props.setTodos
   const [title, setTitle] = useState('')
+  const [errorMessage, setErrorMessage] = useState('')
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value)
@@ -30,19 +31,27 @@ const InputTodo = (props: InputTodoProps) => {
 
       // Reset the title input
       setTitle('')
+      // Set error message to empty
+      setErrorMessage('')
+    }
+    else {
+      setErrorMessage('Cannot add blank todo!')
     }
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input 
-      type="text"
-      placeholder="Add todo..."
-      value={title}
-      onChange={handleChange}
-       />
-      <button>Submit</button>
-    </form>
+    <>
+      <form onSubmit={handleSubmit}>
+        <input 
+        type="text"
+        placeholder="Add todo..."
+        value={title}
+        onChange={handleChange}
+        />
+        <button>Submit</button>
+      </form>
+      <span>{errorMessage}</span>
+    </>
   )
 }
 
