@@ -1,7 +1,7 @@
 /// <reference types="react-scripts" />
 
 interface Todo {
-  id: number;
+  id: string;
   title: string;
   completed: boolean;
 }
