@@ -16,13 +16,21 @@ const InputTodo = (props: InputTodoProps) => {
 
   const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const newTodo = {
-      id: uuidv4(), // creates a new random id using uuidv4
-      title: title,
-      completed: false
+    // If trimming the title returns false, then the title is empty
+    if (title.trim()) {
+
+      // Create a new Todo item
+      const newTodo = {
+        id: uuidv4(), // creates a new random id using uuidv4
+        title: title,
+        completed: false
+      }
+      // Update todos
+      setTodos(prevState =>[...prevState].concat([newTodo]))
+
+      // Reset the title input
+      setTitle('')
     }
-    setTodos(prevState =>[...prevState].concat([newTodo]))
-    setTitle('')
   }
 
   return (
