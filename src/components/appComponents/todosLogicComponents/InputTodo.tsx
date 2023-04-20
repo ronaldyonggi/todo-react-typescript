@@ -17,7 +17,7 @@ const InputTodo = (props: InputTodoProps) => {
   const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault()
     const newTodo = {
-      id: uuidv4(),
+      id: uuidv4(), // creates a new random id using uuidv4
       title: title,
       completed: false
     }
