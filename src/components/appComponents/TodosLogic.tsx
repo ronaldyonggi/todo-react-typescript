@@ -5,17 +5,17 @@ import TodosList from "./todosLogicComponents/TodosList"
 const TodosLogic = () => {
   const initialTodos: Todo[] = [
     {
-      id: 1,
+      id: '1',
       title: 'Setup development environment',
       completed: true,
     },
     {
-      id: 2,
+      id: '2',
       title: 'Develop website and add content',
       completed: false,
     },
     {
-      id: 3,
+      id: '3',
       title: 'Deploy to live server',
       completed: false,
     },
