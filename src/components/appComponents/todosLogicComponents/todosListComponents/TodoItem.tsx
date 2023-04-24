@@ -6,12 +6,12 @@ interface TodoItemProps {
 }
 
 const TodoItem = (props: TodoItemProps) => {
-const completedStyle: React.CSSProperties = {
-  fontStyle: 'italic',
-  color: '#595959',
-  opacity: 0.4,
-  textDecoration: 'line-through'
-};
+  const completedStyle: React.CSSProperties = {
+    fontStyle: 'italic',
+    color: '#595959',
+    opacity: 0.4,
+    textDecoration: 'line-through'
+  };
 
   const todo = props.todo
   const setTodos = props.setTodos
