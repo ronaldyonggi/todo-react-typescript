@@ -1,4 +1,4 @@
-import { ReactEventHandler, useState } from 'react'
+import { ReactEventHandler, useRef, useState } from 'react'
 import styles from '../../../styles/TodoItem.module.scss'
 
 interface TodoItemProps {
@@ -7,6 +7,7 @@ interface TodoItemProps {
 }
 
 const TodoItem = (props: TodoItemProps) => {
+  const editInputRef = useRef<HTMLInputElement>(null)
   const [editing, setEditing] = useState(false);
   
   const completedStyle: React.CSSProperties = {
@@ -49,7 +50,8 @@ const TodoItem = (props: TodoItemProps) => {
   }
 
   const handleEditDone = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter') {
+    if (event.key === 'Enter' && editInputRef.current) {
+      setUpdate(editInputRef.current.value, todo.id)
       setEditing(false)
     }
   }
@@ -74,9 +76,9 @@ const TodoItem = (props: TodoItemProps) => {
       {editing && 
         <input 
           type='text'
-          value={todo.title}
+          ref={editInputRef}
+          defaultValue={todo.title}
           className={styles.textInput}
-          onChange={(e) => setUpdate(e.target.value, todo.id)}
           onKeyDown={handleEditDone}
         />
       }
