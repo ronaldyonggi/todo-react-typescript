@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import styles from '../../../styles/TodoItem.module.scss'
 
 interface TodoItemProps {
@@ -6,6 +7,8 @@ interface TodoItemProps {
 }
 
 const TodoItem = (props: TodoItemProps) => {
+  const [editing, setEditing] = useState(false);
+  
   const completedStyle: React.CSSProperties = {
     fontStyle: 'italic',
     color: '#595959',
@@ -34,17 +37,28 @@ const TodoItem = (props: TodoItemProps) => {
 
   return (
     <li className={styles.item}>
-      <div className={styles.content}>
+      {!editing && 
+        <div className={styles.content}>
+          <input 
+          type="checkbox" 
+          checked={todo.completed}
+          onChange={() => handleChecked(todo.id)}
+          />
+          <button onClick={() => setEditing(true)}>Edit</button>
+          <button onClick={() => handleDelete(todo.id)}>Delete</button>
+          <span style={todo.completed ? completedStyle : undefined}>
+            {todo.title}
+          </span>
+        </div>
+      }
+
+      {editing && 
         <input 
-        type="checkbox" 
-        checked={todo.completed}
-        onChange={() => handleChecked(todo.id)}
+          type='text'
+          value={todo.title}
+          className={styles.textInput}
         />
-        <button onClick={() => handleDelete(todo.id)}>Delete</button>
-        <span style={todo.completed ? completedStyle : undefined}>
-          {todo.title}
-        </span>
-      </div>
+      }
     </li>
   )
 }
