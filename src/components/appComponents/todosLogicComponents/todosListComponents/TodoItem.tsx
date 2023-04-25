@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { ReactEventHandler, useState } from 'react'
 import styles from '../../../styles/TodoItem.module.scss'
 
 interface TodoItemProps {
@@ -35,6 +35,25 @@ const TodoItem = (props: TodoItemProps) => {
       prevState.filter((todo) => todo.id !== id))
   }
 
+  // handle changes on editing a todo
+  const setUpdate = (newTodoTitle: string, id: string)  => {
+    setTodos((prevState) => 
+      prevState.map(todo => {
+        if (todo.id === id) return {
+          ...todo, 
+          title: newTodoTitle
+        } 
+        else return todo
+      })
+    )
+  }
+
+  const handleEditDone = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      setEditing(false)
+    }
+  }
+
   return (
     <li className={styles.item}>
       {!editing && 
@@ -57,6 +76,8 @@ const TodoItem = (props: TodoItemProps) => {
           type='text'
           value={todo.title}
           className={styles.textInput}
+          onChange={(e) => setUpdate(e.target.value, todo.id)}
+          onKeyDown={handleEditDone}
         />
       }
     </li>
